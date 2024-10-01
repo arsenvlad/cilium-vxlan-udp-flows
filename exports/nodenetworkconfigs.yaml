@@ -1,0 +1,78 @@
+Name:         aks-nodepool1-31879185-vmss000000
+Namespace:    kube-system
+Labels:       kubernetes.azure.com/podnetwork-delegationguid=
+              kubernetes.azure.com/podnetwork-subnet=
+              kubernetes.azure.com/podnetwork-type=overlay
+              managed=true
+              owner=aks-nodepool1-31879185-vmss000000
+Annotations:  <none>
+API Version:  acn.azure.com/v1alpha
+Kind:         NodeNetworkConfig
+Metadata:
+  Creation Timestamp:  2024-09-24T16:36:12Z
+  Finalizers:
+    finalizers.acn.azure.com/dnc-operations
+  Generation:  1
+  Owner References:
+    API Version:           v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  Node
+    Name:                  aks-nodepool1-31879185-vmss000000
+    UID:                   2965d4df-d369-4caa-a153-b8b51357a9f9
+  Resource Version:        664
+  UID:                     e868719e-0269-49b1-b6b1-7645d85998e0
+Spec:
+  Requested IP Count:  0
+Status:
+  Assigned IP Count:  256
+  Network Containers:
+    Assignment Mode:       static
+    Id:                    33811011-98ff-41a7-befc-db6d1e033e86
+    Node IP:               10.224.0.5
+    Primary IP:            192.168.1.0/24
+    Subnet Address Space:  192.168.0.0/16
+    Subnet Name:           routingdomain_4e587100-f5db-59b5-9480-1f35c4023ae8_overlaysubnet
+    Type:                  overlay
+    Version:               0
+Events:                    <none>
+
+
+Name:         aks-nodepool1-31879185-vmss000001
+Namespace:    kube-system
+Labels:       kubernetes.azure.com/podnetwork-delegationguid=
+              kubernetes.azure.com/podnetwork-subnet=
+              kubernetes.azure.com/podnetwork-type=overlay
+              managed=true
+              owner=aks-nodepool1-31879185-vmss000001
+Annotations:  <none>
+API Version:  acn.azure.com/v1alpha
+Kind:         NodeNetworkConfig
+Metadata:
+  Creation Timestamp:  2024-09-24T16:36:12Z
+  Finalizers:
+    finalizers.acn.azure.com/dnc-operations
+  Generation:  1
+  Owner References:
+    API Version:           v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  Node
+    Name:                  aks-nodepool1-31879185-vmss000001
+    UID:                   cf531c03-5b1f-4fd4-b46f-5d16e4ce8051
+  Resource Version:        662
+  UID:                     50914aa6-47e4-482d-a03f-c2fe601a774e
+Spec:
+  Requested IP Count:  0
+Status:
+  Assigned IP Count:  256
+  Network Containers:
+    Assignment Mode:       static
+    Id:                    dd10c0ab-7cab-44bd-aca1-ea4858cc5751
+    Node IP:               10.224.0.4
+    Primary IP:            192.168.0.0/24
+    Subnet Address Space:  192.168.0.0/16
+    Subnet Name:           routingdomain_4e587100-f5db-59b5-9480-1f35c4023ae8_overlaysubnet
+    Type:                  overlay
+    Version:               0
+Events:                    <none>

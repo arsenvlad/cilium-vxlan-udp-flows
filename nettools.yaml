@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nettools-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nettools
+  template:
+    metadata:
+      labels:
+        app: nettools
+    spec:
+      containers:
+        - name: nettools
+          image: jrecord/nettools
+          command: ["sleep", "infinity"]

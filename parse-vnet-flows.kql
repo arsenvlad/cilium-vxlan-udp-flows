@@ -1,0 +1,44 @@
+// Parsing JSON data from Azure VNet Flows files in storage
+
+let parsed_data = parse_json(j);
+print parsed_data
+| mv-expand flow = parsed_data.records
+| mv-expand flows = flow.flowRecords.flows
+| mv-expand flowGroups = flows.flowGroups
+| mv-expand flowTuple = flowGroups.flowTuples
+| project Time = flow['time'], 
+          FlowLogGUID = flow.flowLogGUID, 
+          MacAddress = flow.macAddress, 
+          FlowLogResourceID = flow.flowLogResourceID, 
+          TargetResourceID = flow.targetResourceID,
+          FlowLogVersion = flow.flowLogVersion,
+          OperationName = flow.operationName,
+          AclID = flows.aclID,
+          Rule = flowGroups.rule,
+          TupleDetails = split(flowTuple, ',')
+| project 
+    Time,
+    //FlowLogGUID,
+    MacAddress,
+    //FlowLogResourceID,
+    //TargetResourceID,
+    //FlowLogVersion,
+    //OperationName,
+    //AclID,
+    Rule = tostring(Rule),
+    Timestamp = tostring(TupleDetails[0]),
+    SourceIP = tostring(TupleDetails[1]),
+    DestinationIP = tostring(TupleDetails[2]),
+    SourcePort = tostring(TupleDetails[3]),
+    DestinationPort = tostring(TupleDetails[4]),
+    Protocol = tostring(TupleDetails[5]),
+    Direction = tostring(TupleDetails[6]),
+    Action = tostring(TupleDetails[7]),
+    Decision = tostring(TupleDetails[8]),
+    Packets = toint(TupleDetails[9]),
+    Bytes = toint(TupleDetails[10]),
+    SessionPackets = toint(TupleDetails[11]),
+    SessionBytes = toint(TupleDetails[12])
+| where Protocol == '17'
+| where Action == 'E'
+| summarize count(), dcount(SourcePort), sum(Bytes) by Direction
