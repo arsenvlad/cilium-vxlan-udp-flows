@@ -118,3 +118,32 @@ kubectl -n kube-system port-forward svc/hubble-ui 12000:80
 ```
 
 <http://localhost:12000>
+
+## FQDN Filtering
+
+<https://learn.microsoft.com/en-us/azure/aks/advanced-network-container-services-security-cli>
+
+```bash
+# Enable all Advanced Container Networking Service features
+az aks update --resource-group rg-aksazurecilium1 --name aksazurecilium1 --enable-acns --debug
+
+# Enable only FQDN policy feature without ACNS Observability
+# az aks update --resource-group rg-aksazurecilium1 --name aksazurecilium1 --enable-fqdn-policy --debug
+
+# Disable FQDN policy feature
+# az aks update --resource-group rg-aksazurecilium1 --name aksazurecilium1 --disable-fqdn-policy --debug
+```
+
+View the FQDN policy related pods dns-proxy
+
+```bash
+kubectl get pods -A | grep fqdn-policy
+kubectl describe pod fqdn-policy-8kfc4 -n kube-system
+kubectl logs fqdn-policy-8kfc4 -n kube-system
+```
+
+Apply Cilium DNS Policy
+
+```bash
+kubectl apply -f cilium-dns-policy.yaml
+```
